@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +19,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.maxim.chopstics.R;
+import com.example.maxim.chopstics.views.PackModel;
 import com.example.maxim.chopstics.views.PacksAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    private DatabaseReference mPacksReference;
 
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
@@ -38,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView = null;
     private LinearLayoutManager mLayoutManager = null;
+    private PacksAdapter mPacksAdapter = null;
+
+    private List<PackModel> mPacks;
+    private List<String> mPacksIds;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        mPacksReference = FirebaseDatabase.getInstance().getReference("packs");
+
+        mPacks = new ArrayList<>();
+        mPacksIds = new ArrayList<>();
 
         mLeftDrawerList = (ListView) findViewById(R.id.left_drawer);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -81,7 +101,68 @@ public class MainActivity extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(new PacksAdapter(this));
+
+        mPacksAdapter = new PacksAdapter(this, mPacks);
+        mRecyclerView.setAdapter(mPacksAdapter);
+
+        updatePacksList();
+    }
+
+    private void updatePacksList() {
+        mPacksReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
+
+                mPacksIds.add(dataSnapshot.getKey());
+                mPacks.add(dataSnapshot.getValue(PackModel.class));
+                mPacksAdapter.notifyItemInserted(mPacks.size() - 1);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+
+                PackModel newPack = dataSnapshot.getValue(PackModel.class);
+                String packKey = dataSnapshot.getKey();
+
+                int packIndex = mPacksIds.indexOf(packKey);
+                if (packIndex > -1) {
+                    mPacks.set(packIndex, newPack);
+                    mPacksAdapter.notifyItemChanged(packIndex);
+                } else {
+                    Log.w(TAG, "onChildChanged:unknown_child:" + packKey);
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
+
+                String packKey = dataSnapshot.getKey();
+                int packIndex = mPacksIds.indexOf(packKey);
+
+                if (packIndex > -1) {
+                    mPacksIds.remove(packIndex);
+                    mPacks.remove(packIndex);
+
+                    mPacksAdapter.notifyItemRemoved(packIndex);
+                } else {
+                    Log.w(TAG, "onChildRemoved:unknown_child:" + packKey);
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                Log.d(TAG, "onChild:" + dataSnapshot.getKey());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "onCancelled:", databaseError.toException());
+            }
+        });
     }
 
     private class DrawerItemClickListener implements ListView.OnItemClickListener {

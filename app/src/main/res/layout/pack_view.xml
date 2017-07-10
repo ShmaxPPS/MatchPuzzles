@@ -11,7 +11,7 @@
         android:padding="6dp">
 
         <ImageView
-            android:id="@+id/pack_icon"
+            android:id="@+id/pack_image"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/common_google_signin_btn_icon_dark_normal"/>
@@ -20,7 +20,7 @@
             android:id="@+id/pack_name"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:layout_toEndOf="@+id/pack_icon"
+            android:layout_toEndOf="@+id/pack_image"
             android:text="Уровень 1"
             android:gravity="center"
             android:textSize="20sp"
@@ -36,8 +36,8 @@
             android:layout_alignParentEnd="true"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@+id/pack_icon"
-            android:layout_alignBottom="@+id/pack_icon" />
+            android:layout_toEndOf="@+id/pack_image"
+            android:layout_alignBottom="@+id/pack_image" />
 
         <TextView
             android:id="@+id/pack_progress_text"
