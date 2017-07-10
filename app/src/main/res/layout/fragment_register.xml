@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_vertical_margin">
+
+    <ImageView
+        android:id="@+id/matchstick_logo_image"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/desc_firebase_lockup"
+        android:src="@drawable/match_logo" />
+
+    <TextView
+        android:id="@+id/matchstick_logo_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/name"
+        android:layout_margin="8dp"
+        android:layout_toEndOf="@+id/matchstick_logo_image"
+        android:gravity="center"
+        android:text="@string/matchsticks_logo_text"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/matchstick_logo_image"
+        android:layout_marginTop="24dp"
+        android:hint="Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_marginTop="24dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/email"
+        android:layout_marginTop="24dp"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        android:drawableEnd="@drawable/ic_register"
+        android:paddingLeft="48dp"
+        android:text="Register"
+        android:textColor="@android:color/white" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:visibility="gone"/>
+
+</RelativeLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_vertical_margin">
+
+    <ImageView
+        android:id="@+id/matchstick_logo_image"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/desc_firebase_lockup"
+        android:src="@drawable/match_logo" />
+
+    <TextView
+        android:id="@+id/matchstick_logo_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/matchstick_logo_image"
+        android:gravity="center"
+        android:text="@string/matchsticks_logo_text"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_alignBottom="@+id/matchstick_logo_image" />
+
+    <Button
+        android:id="@+id/btn_play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/matchstick_logo_image"
+        android:layout_marginTop="48dp"
+        android:background="@color/colorPrimary"
+        android:drawableEnd="@drawable/ic_play"
+        android:paddingLeft="48dp"
+        android:text="Play game"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btn_google_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_play"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        android:drawableEnd="@drawable/ic_google"
+        android:paddingLeft="48dp"
+        android:text="Google sign in"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/btn_custom_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_google_sign_in"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorPrimary"
+        android:drawableEnd="@drawable/ic_email"
+        android:paddingLeft="48dp"
+        android:text="Email sign in"
+        android:textColor="@android:color/white" />
+
+
+</RelativeLayout>

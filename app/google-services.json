@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "900472803655",
+    "firebase_url": "https://chopstics-application.firebaseio.com",
+    "project_id": "chopstics-application",
+    "storage_bucket": "chopstics-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900472803655:android:be072d5a1b3991ad",
+        "android_client_info": {
+          "package_name": "com.example.maxim.chopstics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900472803655-226nkesh676m2qr9ammuu13ouatmiic1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maxim.chopstics",
+            "certificate_hash": "8f90c5678a782dd12e9e3dfcaf2d71f44da5aab0"
+          }
+        },
+        {
+          "client_id": "900472803655-rensqvt8oap8i0h7l0vvn42d6gju5cve.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk1viTHfaWVjKpQc0wgiSyLcB8M9URM8U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900472803655-rensqvt8oap8i0h7l0vvn42d6gju5cve.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

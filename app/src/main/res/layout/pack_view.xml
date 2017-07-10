@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+        <ImageView
+            android:id="@+id/pack_icon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/common_google_signin_btn_icon_dark_normal"/>
+
+        <TextView
+            android:id="@+id/pack_name"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_toEndOf="@+id/pack_icon"
+            android:text="Уровень 1"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:layout_alignParentTop="true" />
+
+        <ProgressBar
+            android:id="@+id/pack_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/pack_icon"
+            android:layout_alignBottom="@+id/pack_icon" />
+
+        <TextView
+            android:id="@+id/pack_progress_text"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginEnd="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:text="3/10"/>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
